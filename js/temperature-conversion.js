@@ -2,14 +2,24 @@ function fahrenheitToCelsius(value) {
     return (value - 32) * 5 / 9;
 };
 
+function fahrenheitToKalvin(value) {
+    return (value - 32) * (5 / 9) + 273.15;;
+};
+
 function celsiusToFahrenheit(value) {
     return (value * (9 / 5)) + 32;
-}
+};
 
 function celsiusToKalvin(value) {
-    return value + 273;
-}
-
+    return (value * 1) + 273;
+};
+function KalvinToCelsius(value) {
+    return value - 273.15;
+};
+function KalvinToFahrenheit(value) {
+    return (value - 273.15) * 9/5 + 32;
+};
+  var output = null;
 $(document).ready(function() {
     $input = $('input');
     $inputFahrenheit = $('.js-input-fahrenheit');
@@ -28,21 +38,21 @@ $(document).ready(function() {
         if ($.isNumeric(value)) {
 
             if (type == 'fahrenheit') {
-                var output = fahrenheitToCelsius(value);
+                 output = fahrenheitToKalvin(value);
                 $('.js-input-celsius').val(output.toFixed(1));
-                var output = celsiusToKalvin(value)
+                 output = celsiusToKalvin(value)
                 $('.js-input-Kalvin').val(output.toFixed(1));
 
             } else if (type == 'celsius') {
-                var output = celsiusToFahrenheit(value);
+                 output = celsiusToFahrenheit(value);
                 $('.js-input-fahrenheit').val(output.toFixed(1));
-                var output = celsiusToKalvin(value)
+                 output = celsiusToKalvin(value)
                 $('.js-input-Kalvin').val(output.toFixed(1));
 
             } else if (type == 'Kalvin') {
-                var output = fahrenheitToCelsius(value);
+                 output =  KalvinToCelsius(value);
                 $('.js-input-celsius').val(output.toFixed(1));
-                var output = celsiusToFahrenheit(value);
+                 output = KalvinToFahrenheit(value);
                 $('.js-input-fahrenheit').val(output.toFixed(1));
             }
 
