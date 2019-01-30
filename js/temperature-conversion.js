@@ -1,45 +1,54 @@
 function fahrenheitToCelsius(value) {
-  return (value - 32) * 5/9;
+    return (value - 32) * 5 / 9;
 };
 
 function celsiusToFahrenheit(value) {
-  return (value * (9/5)) + 32;
+    return (value * (9 / 5)) + 32;
 }
 
-$ ( document ).ready(function() {
-  $input            = $('input');
-  $inputFahrenheit  = $('.js-input-fahrenheit');
-  $inputCelsius     = $('.js-input-celsius');
-  $errorsDiv        = $('.js-errors');
+function celsiusToKalvin(value) {
+    return value + 273;
+}
 
-  $input.on('blur', function() {
-    var value   = $(this).val();
-    var type    = $(this).attr('data-unit');
+$(document).ready(function() {
+    $input = $('input');
+    $inputFahrenheit = $('.js-input-fahrenheit');
+    $inputCelsius = $('.js-input-celsius');
+    $inputKalvin = $('.js-input-Kalvin');
+    $errorsDiv = $('.js-errors');
 
-    if ( value == '' ) {
-      value = 0;
-    };
+    $input.on('blur', function() {
+        var value = $(this).val();
+        var type = $(this).attr('data-unit');
 
-    if ( $.isNumeric(value) ) {
+        if (value == '') {
+            value = 0;
+        };
 
-      if ( type == 'fahrenheit' ) {
-        var output = fahrenheitToCelsius(value);
-        $('.js-input-celsius').val(output.toFixed(1));
-      }
-      else {
-        var output = celsiusToFahrenheit(value);       
-        $('.js-input-fahrenheit').val(output.toFixed(1));
-      };
+        if ($.isNumeric(value)) {
 
-      $errorsDiv.addClass('is-hidden');
-      $errorsDiv.html("");
+            if (type == 'fahrenheit') {
+                var output = fahrenheitToCelsius(value);
+                $('.js-input-celsius').val(output.toFixed(1));
 
-    } else {
-      
-      $errorsDiv.removeClass('is-hidden');
-      $errorsDiv.html("Sorry, I can only convert numbers");
-    
-    };
-  });
+            } else if (type == 'celsius') {
+                var output = celsiusToFahrenheit(value);
+                $('.js-input-fahrenheit').val(output.toFixed(1));
+
+            } else {
+                var output = celsiusToKalvin(value)
+                $('.js-input-Kalvin').val(output.toFixed(1));
+            }
+
+            $errorsDiv.addClass('is-hidden');
+            $errorsDiv.html("");
+
+        } else {
+
+            $errorsDiv.removeClass('is-hidden');
+            $errorsDiv.html("Sorry, I can only convert numbers");
+
+        };
+    });
 
 });
