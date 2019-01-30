@@ -30,14 +30,20 @@ $(document).ready(function() {
             if (type == 'fahrenheit') {
                 var output = fahrenheitToCelsius(value);
                 $('.js-input-celsius').val(output.toFixed(1));
+                var output = celsiusToKalvin(value)
+                $('.js-input-Kalvin').val(output.toFixed(1));
 
             } else if (type == 'celsius') {
                 var output = celsiusToFahrenheit(value);
                 $('.js-input-fahrenheit').val(output.toFixed(1));
-
-            } else {
                 var output = celsiusToKalvin(value)
                 $('.js-input-Kalvin').val(output.toFixed(1));
+
+            } else if (type == 'Kalvin') {
+                var output = fahrenheitToCelsius(value);
+                $('.js-input-celsius').val(output.toFixed(1));
+                var output = celsiusToFahrenheit(value);
+                $('.js-input-fahrenheit').val(output.toFixed(1));
             }
 
             $errorsDiv.addClass('is-hidden');
